@@ -7,7 +7,8 @@ SELECT
     json_build_object(
         'file_name', pf.file_name,
         'mime_type', pf.mime_type,
-        'url', pf.url
+        'url', pf.url,
+        'is_public', f.is_public
     ) AS Poster,
     json_build_object(
         'ID', d.id,
@@ -16,7 +17,8 @@ SELECT
         'Photo', json_build_object(
             'file_name', dp.file_name,
             'mime_type', dp.mime_type,
-            'url', dp.url
+            'url', dp.url,
+            'is_public', f.is_public
         )
     ) AS Director,
     json_agg(
@@ -27,7 +29,8 @@ SELECT
             'Photo', json_build_object(
                 'file_name', ap.file_name,
                 'mime_type', ap.mime_type,
-                'url', ap.url
+                'url', ap.url,
+                'is_public', f.is_public
             )
         )
     ) AS Actors,
